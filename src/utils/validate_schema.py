@@ -3,7 +3,9 @@ from jsonschema import validate, ValidationError
 
 
 def validate_job_description_schema(job_schema:json, jobs_path:str):
-
+    """
+    ###### This function validate the schema of Job Desciption. ######
+    """
 
     with open(job_schema, "r", encoding="utf-8") as f:
         schema = json.load(f)
@@ -43,9 +45,3 @@ def validate_job_description_schema(job_schema:json, jobs_path:str):
     print("\n========== SUMMARY ==========")
     print("✅ Valid records:", valid_count)
     print("❌ Invalid records:", invalid_count)
-
-job_schema = "./data/job_schema.json"
-
-jobs_path = "./data/jobs.jsonl"
-
-validate_schema(job_schema=job_schema, jobs_path=jobs_path)
