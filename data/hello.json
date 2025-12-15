@@ -1,0 +1,54 @@
+{
+  "jobLink": "https://careers.cognizant.com/global-en/jobs/00066042671/azure-databricks-engineer/?source=JB-11500",
+  "jobDescription": {
+    "jobTitle": "Azure Databricks Engineer/Developer",
+    "jobOverview": {
+      "summary": "Senior Developer role (8 to 12 years of experience) specializing in Databricks, PySpark, and Azure Data. The role focuses on developing and optimizing scalable data solutions, enhancing data processing capabilities, and collaborating on data architectures.",
+      "location": ["Toronto", "Ontario", "Canada","Hybrid"],
+      "employmentType": "Full-time",
+      "experienceLevel": "Senior",
+      "experienceYears": "8-12 years",
+      "department": "Digital"
+    },
+    "keyResponsibilities": [
+      "Develop and implement scalable data solutions using Databricks and PySpark to enhance data processing capabilities.",
+      "Collaborate with cross-functional teams to design and optimize data architectures on Azure Data platforms.",
+      "Provide technical expertise in data integration and transformation processes to ensure seamless data flow.",
+      "Analyze complex data sets to identify trends and insights that support business objectives.",
+      "Ensure data quality and integrity through rigorous testing and validation procedures.",
+      "Optimize performance of data pipelines to improve efficiency and reduce processing time.",
+      "Document technical specifications and maintain comprehensive records of data processes.",
+      "Troubleshoot and resolve data-related issues to minimize disruptions in data operations.",
+      "Mentor junior developers to foster a culture of continuous learning and improvement.",
+      "Participate in code reviews to ensure adherence to coding standards and best practices."
+    ],
+    "requiredQualifications": {
+      "technicalSkills": [
+        "Extensive experience in Databricks, PySpark, and Azure Data",
+        "Solid understanding of data integration and transformation processes",
+        "Experience developing and optimizing data solutions"
+      ],
+      "toolsAndTechnologies": [
+        "Databricks",
+        "PySpark",
+        "Azure Data Platforms"
+      ],
+      "keyCompetencies": [
+        "Strong problem-solving skills with the ability to troubleshoot complex data issues",
+        "Excellent communication skills for effective collaboration with cross-functional teams",
+        "Commitment to continuous learning, staying updated with the latest data technologies",
+        "Proactive approach to optimizing data solutions"
+      ],
+      "educationAndExperience": [
+        "8 to 12 years of experience, specializing in Databricks, PySpark, and Azure Data"
+      ]
+    },
+    "preferredQualifications": [
+      "Experience in Life and Annuities Insurance"
+    ],
+    "aboutCompany": {
+      "name": "Cognizant",
+      "description": "A company dedicated to fostering an energetic, collaborative, and inclusive workplace. Cognizant supports a healthy work-life balance and focuses on driving innovation."
+    }
+  }
+}

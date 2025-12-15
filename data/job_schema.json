@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "id",
+    "role",
+    "company",
+    "description",
+    "responsibilities",
+    "requirements",
+    "technical_assessment_focus",
+    "compensation",
+    "logistics",
+    "interview_process",
+    "metadata",
+    "embedding_optimization"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+
+    "role": {
+      "type": "object",
+      "required": ["title", "level", "department", "team", "reports_to"],
+      "properties": {
+        "title": { "type": "string" },
+        "level": { "type": "string" },
+        "department": { "type": "string" },
+        "team": { "type": "string" },
+        "reports_to": { "type": "string" }
+      }
+    },
+
+    "company": {
+      "type": "object",
+      "required": ["name", "size", "industry", "culture_keywords"],
+      "properties": {
+        "name": { "type": "string" },
+        "size": { "type": "string" },
+        "industry": { "type": "string" },
+        "culture_keywords": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+
+    "description": {
+      "type": "object",
+      "required": ["summary", "key_value_proposition", "full_text"],
+      "properties": {
+        "summary": { "type": "string" },
+        "key_value_proposition": { "type": "string" },
+        "full_text": { "type": "string" }
+      }
+    },
+
+    "responsibilities": {
+      "type": "object",
+      "required": ["primary", "secondary", "time_allocation"],
+      "properties": {
+        "primary": { "type": "array", "items": { "type": "string" } },
+        "secondary": { "type": "array", "items": { "type": "string" } },
+        "time_allocation": {
+          "type": "object",
+          "properties": {
+            "coding": { "type": "number" },
+            "mentoring": { "type": "number" },
+            "meetings": { "type": "number" }
+          }
+        }
+      }
+    },
+
+    "requirements": {
+      "type": "object",
+      "required": ["must_have", "nice_to_have", "deal_breakers"]
+    },
+
+    "embedding_optimization": {
+      "type": "object",
+      "required": ["primary_text", "semantic_tags"]
+    }
+  }
+}
