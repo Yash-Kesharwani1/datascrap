@@ -1,0 +1,5 @@
+from utils.validate_schema import validate_job_description_schema
+from path import job_description_path, job_description_schema_path
+
+
+validate_job_description_schema(job_schema=job_description_schema_path,jobs_path=job_description_path)
