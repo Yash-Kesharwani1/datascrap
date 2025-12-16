@@ -1,0 +1,56 @@
+{
+  "doc_type": "interview_question",
+  "job_role": "Java Backend Developer",
+  "primary_language": "Java",
+  "technologies": [
+    "Core Java",
+    "Collections",
+    "Multithreading",
+    "JVM"
+  ],
+  "experience_range": {
+    "min_years": 3,
+    "max_years": 5
+  },
+  "difficulty": "Medium",
+  "question": {
+    "text": "What is the difference between HashMap and ConcurrentHashMap?",
+    "intent": "Evaluate understanding of Java concurrency and collections"
+  },
+  "ideal_answer": {
+    "summary": "HashMap is not thread-safe, while ConcurrentHashMap is thread-safe and optimized for concurrent access using internal locking mechanisms.",
+    "detailed_answer": "HashMap allows null keys and values and is not synchronized, making it unsafe in multithreaded environments. ConcurrentHashMap uses finer-grained locking and does not allow null keys or values, offering better performance under concurrent access."
+  },
+  "key_concepts": [
+    "Thread Safety",
+    "Concurrency",
+    "Synchronization",
+    "Java Collections"
+  ],
+  "follow_up_questions": [
+    "How does ConcurrentHashMap achieve thread safety internally?",
+    "Why are null keys not allowed in ConcurrentHashMap?"
+  ],
+  "evaluation_criteria": {
+    "must_mention": [
+      "thread-safe",
+      "concurrent access",
+      "performance"
+    ],
+    "strong_answer_signals": [
+      "bucket-level locking",
+      "CAS",
+      "reduced contention"
+    ],
+    "red_flags": [
+      "saying both are thread-safe",
+      "no explanation of concurrency"
+    ]
+  },
+  "source": {
+    "type": "YouTube Interview",
+    "experience_level_claimed": "3+ years",
+    "link": "https://youtu.be/JXOwT86h0gg"
+  }
+}
+
