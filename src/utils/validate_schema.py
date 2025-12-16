@@ -1,47 +1,97 @@
 import json
-from jsonschema import validate, ValidationError
+import logging
+from pathlib import Path
+from typing import Tuple
+
+from jsonschema import Draft7Validator
+from jsonschema.exceptions import ValidationError
 
 
-def validate_job_description_schema(job_schema:json, jobs_path:str):
+# -----------------------------------------------------------------------------
+# Logging Configuration (Production Ready)
+# -----------------------------------------------------------------------------
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+
+# -----------------------------------------------------------------------------
+# Core Validation Function
+# -----------------------------------------------------------------------------
+def validate_schema(
+    schema_path: str | Path,
+    jsonl_path: str | Path
+) -> Tuple[int, int]:
     """
-    ###### This function validate the schema of Job Desciption. ######
+    Validate a JSONL file against a JSON Schema.
+
+    Args:
+        schema_path (str | Path): Path to JSON schema file
+        jsonl_path (str | Path): Path to JSONL data file
+
+    Returns:
+        Tuple[int, int]: (valid_records, invalid_records)
     """
 
-    with open(job_schema, "r", encoding="utf-8") as f:
-        schema = json.load(f)
+    schema_path = Path(schema_path)
+    jsonl_path = Path(jsonl_path)
 
-    jsonl_file = jobs_path
+    if not schema_path.exists():
+        raise FileNotFoundError(f"Schema file not found: {schema_path}")
+
+    if not jsonl_path.exists():
+        raise FileNotFoundError(f"JSONL file not found: {jsonl_path}")
+
+    # Load schema
+    with schema_path.open(encoding="utf-8") as schema_file:
+        schema = json.load(schema_file)
+
+    validator = Draft7Validator(schema)
 
     valid_count = 0
     invalid_count = 0
 
-    with open(jsonl_file, "r", encoding="utf-8") as f:
-        for line_number, line in enumerate(f, start=1):
+    with jsonl_path.open(encoding="utf-8") as jsonl_file:
+        for line_number, line in enumerate(jsonl_file, start=1):
 
             if not line.strip():
-                continue  # skip empty lines
+                continue  # Skip empty lines
 
             try:
-                data = json.loads(line)
-                validate(instance=data, schema=schema)
+                record = json.loads(line)
+
+            except json.JSONDecodeError as exc:
+                invalid_count += 1
+                logger.error(
+                    "JSON decode error at line %d | %s",
+                    line_number,
+                    exc.msg
+                )
+                continue
+
+            errors = sorted(
+                validator.iter_errors(record),
+                key=lambda e: list(e.path)
+            )
+
+            if not errors:
                 valid_count += 1
+                continue
 
-            except json.JSONDecodeError as e:
-                invalid_count += 1
-                print(f"\n❌ JSON decode error at line {line_number}")
-                print(e)
+            invalid_count += 1
+            for error in errors:
+                error_path = " -> ".join(map(str, error.path)) or "ROOT"
+                logger.error(
+                    "Schema validation error at line %d | Path: %s | Reason: %s",
+                    line_number,
+                    error_path,
+                    error.message
+                )
 
-            except ValidationError as e:
-                invalid_count += 1
+    logger.info("========== VALIDATION SUMMARY ==========")
+    logger.info("Valid records   : %d", valid_count)
+    logger.info("Invalid records : %d", invalid_count)
 
-                # Build readable JSON path
-                error_path = " -> ".join([str(p) for p in e.path]) or "ROOT"
-
-                print(f"\n❌ Schema mismatch at line {line_number}")
-                print(f"📍 Path     : {error_path}")
-                print(f"⚠️  Reason   : {e.message}")
-                print(f"📘 Expected : {e.schema}")
-
-    print("\n========== SUMMARY ==========")
-    print("✅ Valid records:", valid_count)
-    print("❌ Invalid records:", invalid_count)
+    return valid_count, invalid_count

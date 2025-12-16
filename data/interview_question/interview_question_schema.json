@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Interview Question Document",
+  "type": "object",
+  "required": [
+    "id",
+    "role",
+    "primary_language",
+    "technologies",
+    "experience_range",
+    "difficulty",
+    "question",
+    "ideal_answer",
+    "key_concepts",
+    "follow_up_questions",
+    "evaluation_criteria",
+    "source"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the interview question document"
+    },
+    "role": {
+      "type": "string",
+      "description":"Name of the job role"
+    },
+    "primary_language": {
+      "type": "string",
+      "description": "Primary programming language of the question"
+    },
+    "technologies": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Technologies/concepts relevant to the question"
+    },
+    "experience_range": {
+      "type": "object",
+      "required": ["min_years", "max_years"],
+      "properties": {
+        "min_years": { "type": "string", "default": "Not Specified"},
+        "max_years": { "type": "string", "default": "Not Specified"}
+      }
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["Easy", "Medium", "Hard"],
+      "description": "Difficulty level of the question"
+    },
+    "question": {
+      "type": "object",
+      "required": ["text", "intent"],
+      "properties": {
+        "text": { "type": "string" },
+        "intent": { "type": "string" }
+      }
+    },
+    "ideal_answer": {
+      "type": "object",
+      "required": ["summary", "detailed_answer"],
+      "properties": {
+        "summary": { "type": "string" },
+        "detailed_answer": { "type": "string" }
+      }
+    },
+    "key_concepts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "follow_up_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evaluation_criteria": {
+      "type": "object",
+      "required": ["must_mention", "strong_answer_signals", "red_flags"],
+      "properties": {
+        "must_mention": { "type": "array", "items": { "type": "string" } },
+        "strong_answer_signals": { "type": "array", "items": { "type": "string" } },
+        "red_flags": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["type", "experience_level_claimed", "link"],
+      "properties": {
+        "type": { "type": "string" },
+        "experience_level_claimed": { "type": "string" },
+        "link": { "type": "string", "format": "uri" }
+      }
+    }
+  }
+}

@@ -1,5 +1,8 @@
-from utils.validate_schema import validate_job_description_schema
-from path import job_description_path, job_description_schema_path
-
-
-validate_job_description_schema(job_schema=job_description_schema_path,jobs_path=job_description_path)
+from utils.validate_schema import validate_schema
+from path import (
+    JOB_DESCRIPTION_PATH,
+    JOB_DESCRIPTION_SCHEMA_PATH,
+    INTERVIEW_QUESTION_PATH,
+    INTERVIEW_QUESTION_SCHEMA_PATH
+)
+validate_schema(schema_path=JOB_DESCRIPTION_SCHEMA_PATH,jsonl_path=JOB_DESCRIPTION_PATH)
